@@ -24,7 +24,7 @@ num_classes = 19
 if __name__ == '__main__':
     model = network.UNet(1, num_classes).to(device)
     model = nn.DataParallel(model)
-    model.load_state_dict(torch.load(r"net_0.009118677116930485_E_899_evimo.pth"))
+    model.load_state_dict(torch.load(r"net_0.009118677116930485_E_899_evimo.pth", map_location=torch.device('cpu')))
     model.eval()
 
     pbar = tqdm.tqdm(dataloaders['valid'], unit='batch')
@@ -46,6 +46,6 @@ if __name__ == '__main__':
             color_map[i][0], color_map[i][2] = color_map[i][2], color_map[i][0]
             result[class_labels[0] == i] = color_map[i]
 
-        visualization(input, cmap='gray', title='input')
-        visualization(label, cmap='gray', title='label')
-        visualization(result, title='pred')
+        visualization(input, cmap='gray', title='Input')
+        visualization(label, cmap='gray', title='Ground Truth')
+        visualization(result, cmap='gray', title='Prediction')
