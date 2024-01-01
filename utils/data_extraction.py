@@ -98,15 +98,15 @@ def load_events(folder):
     return events
 
 
-list_scene = os.listdir(r"../../evimo/flea3_7/sfm/train")
-list_scene += os.listdir(r"../../evimo/flea3_7/sfm/eval")
+list_scene = os.listdir(r"../evimo/flea3_7/sfm/train")
+list_scene += os.listdir(r"../evimo/flea3_7/sfm/eval")
 
 
 def main(scene_name):
     parser = argparse.ArgumentParser(
         description='View all cameras of a sequence with GT depth overlaid to see availability')
     parser = argparse.ArgumentParser()
-    parser.add_argument('--idir', default=r"../../evimo", type=str,
+    parser.add_argument('--idir', default=r"../evimo", type=str,
                         help='Directory containing npz file tree')
     parser.add_argument('--seq', default=scene_name, help='Sequence name')
     args = parser.parse_args()
